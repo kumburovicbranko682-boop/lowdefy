@@ -7,7 +7,7 @@ export default {
   coverageReporters: [['lcov', { projectRoot: '../..' }], 'text', 'clover'],
   errorOnDeprecated: true,
   testEnvironment: 'jsdom',
-  testPathIgnorePatterns: ['<rootDir>/dist/'],
+  testPathIgnorePatterns: ['<rootDir>/dist/', '<rootDir>/e2e/'],
   moduleFileExtensions: ['js', 'json', 'jsx', 'ts', 'tsx', 'node', 'yaml', 'css'],
   moduleNameMapper: {
     '\\.(css|less)$': '<rootDir>/src/tests/__mocks__/styleMock.js',

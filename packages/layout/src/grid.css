@@ -102,6 +102,61 @@
      When gap is 0, the formula simplifies to span/24 * 100%.
      ===================================================== */
   .lf-col {
+    /*
+      Reset every per-column layout custom property to `initial` so a column
+      never inherits a breakpoint value from an ancestor column.
+
+      CSS custom properties inherit by default. The breakpoint vars below are
+      emitted by deriveLayout only when that breakpoint is declared, so a nested
+      column that doesn't declare e.g. `lg` has no own --lf-span-lg. Without
+      this reset, var(--lf-span-lg, …) resolves to the ancestor's inherited
+      value instead of falling through its own var() chain to --lf-span-md,
+      collapsing nested layouts at >= lg (and the same for offset/order/display
+      at sm/lg/xl/2xl).
+
+      Must be `initial` — the guaranteed-invalid value, which makes the var()
+      fallback chains below resolve. NOT `unset`: for custom properties `unset`
+      means `inherit`, which keeps the leak. Inline values emitted by
+      deriveLayout always win over this reset. The gap vars (--_gap,
+      --lf-gap-*) are intentionally inherited from .lf-row and are not reset.
+    */
+    --lf-span: initial;
+    --lf-span-sm: initial;
+    --lf-span-md: initial;
+    --lf-span-lg: initial;
+    --lf-span-xl: initial;
+    --lf-span-2xl: initial;
+    --lf-display: initial;
+    --lf-display-sm: initial;
+    --lf-display-md: initial;
+    --lf-display-lg: initial;
+    --lf-display-xl: initial;
+    --lf-display-2xl: initial;
+    --lf-offset: initial;
+    --lf-offset-sm: initial;
+    --lf-offset-md: initial;
+    --lf-offset-lg: initial;
+    --lf-offset-xl: initial;
+    --lf-offset-2xl: initial;
+    --lf-order: initial;
+    --lf-order-sm: initial;
+    --lf-order-md: initial;
+    --lf-order-lg: initial;
+    --lf-order-xl: initial;
+    --lf-order-2xl: initial;
+    --lf-push: initial;
+    --lf-push-sm: initial;
+    --lf-push-md: initial;
+    --lf-push-lg: initial;
+    --lf-push-xl: initial;
+    --lf-push-2xl: initial;
+    --lf-pull: initial;
+    --lf-pull-sm: initial;
+    --lf-pull-md: initial;
+    --lf-pull-lg: initial;
+    --lf-pull-xl: initial;
+    --lf-pull-2xl: initial;
+
     display: var(--lf-display, block);
     min-height: 1px;
     flex: 0 0 calc(var(--lf-span, 24) / 24 * (100% + var(--_gap, 0px)) - var(--_gap, 0px));
